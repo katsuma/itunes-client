@@ -5,7 +5,7 @@ require 'itunes/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rb-itunes"
-  spec.version       = Rb::Itunes::VERSION
+  spec.version       = Itunes::VERSION
   spec.authors       = ["ryo katsuma"]
   spec.email         = ["katsuma@gmail.com"]
   spec.description   = %q{iTunes control with Ruby}
