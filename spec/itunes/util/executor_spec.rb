@@ -28,10 +28,12 @@ describe Itunes::Util::Executor do
     let(:script_full_path) { "#{klass.script_tmp_dir}/#{path}" }
     let(:result) { { status: 'ok' }.to_json }
 
-    before { FileUtils::touch(script_full_path) }
+    before do
+      Open3.should_receive(:capture2).with("osascript #{script_full_path}").and_return(result)
+      FileUtils.touch(script_full_path)
+    end
 
     it 'retuens a script result' do
-      Open3.should_receive(:capture2).with("osascript #{script_full_path}").and_return(result)
       expect(execute_template_based_script).to eq(result)
     end
 
