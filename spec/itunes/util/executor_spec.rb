@@ -1,6 +1,6 @@
 # coding: utf-8
 require 'spec_helper'
-require 'itunes'
+require 'itunes-client'
 
 describe Itunes::Util::Executor do
   class DummyClass
