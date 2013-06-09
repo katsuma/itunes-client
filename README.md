@@ -1,4 +1,4 @@
-# itunes-client
+# itunes-client [![Coverage Status](https://coveralls.io/repos/katsuma/itunes-client/badge.png)](https://coveralls.io/r/katsuma/itunes-client)
 
 `itunes-client` provides a high level API (like ActiveRecord style) to control your iTunes.
 
