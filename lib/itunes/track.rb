@@ -58,9 +58,8 @@ module Itunes
       self
     end
 
-    def assign_attributes_by(itunes_response)
-      track_data = ::JSON.parse(itunes_response)
-      ATTRIBUTES.each { |attr| send("#{attr}=", track_data[attr.to_s]) }
+    def assign_attributes_by(track_attributes)
+      ATTRIBUTES.each { |attr| send("#{attr}=", track_attributes[attr.to_s]) }
     end
 
     def self.find_by(arg)
@@ -70,8 +69,11 @@ module Itunes
       script_name = generate_script_from_template('track/finder.tmpl.scpt', conditions: conditions)
       track_response = execute_template_based_script(script_name)
 
-      Track.new.tap do |track|
-        track.assign_attributes_by(track_response)
+      tracks_attributes = ::JSON.parse(track_response)
+      tracks_attributes.compact.map do |track_attributes|
+        Track.new.tap do |track|
+          track.assign_attributes_by(track_attributes)
+        end
       end
     end
 

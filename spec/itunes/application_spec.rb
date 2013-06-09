@@ -24,14 +24,15 @@ describe Application do
         with('application/add.scpt', file_name).and_return(new_persistent_id)
       Track.should_receive(:find_by).
         with(persistent_id: new_persistent_id).
-        and_return(Track.new(persistent_id: new_persistent_id))
+        and_return([Track.new(persistent_id: new_persistent_id)])
     end
 
-    it 'returns a track instance' do
-      track = add
+    it 'returns an array of track instance' do
+      tracks = add
 
-      expect(track).to be_a(Track)
-      expect(track.persistent_id).to eq(new_persistent_id)
+      expect(tracks).to be_an(Array)
+      expect(tracks.size).to eq(1)
+      expect(tracks.first.persistent_id).to eq(new_persistent_id)
     end
   end
 
