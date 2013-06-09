@@ -49,12 +49,12 @@ module Itunes
     end
 
     def pause
-      execute_script('track/pause.scpt', self.persistent_id)
+      application.pause
       self
     end
 
     def stop
-      execute_script('track/stop.scpt', self.persistent_id)
+      application.stop
       self
     end
 
@@ -85,6 +85,12 @@ module Itunes
       conditions.join(' and ')
     end
     private_class_method :find_conditions
+
+    private
+
+    def application
+      Application.instance
+    end
 
   end
 end

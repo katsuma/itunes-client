@@ -34,4 +34,18 @@ describe Application do
       expect(track.persistent_id).to eq(new_persistent_id)
     end
   end
+
+  describe '#pause' do
+    it 'calls pause.scpt' do
+      app.should_receive(:execute_script).with('application/pause.scpt')
+      app.pause
+    end
+  end
+
+  describe '#stop' do
+    it 'calls stop.scpt' do
+      app.should_receive(:execute_script).with('application/stop.scpt')
+      app.stop
+    end
+  end
 end

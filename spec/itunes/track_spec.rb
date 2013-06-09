@@ -6,6 +6,7 @@ include Itunes
 
 describe Track do
   let(:track) { Track.new(persistent_id: base_persistent_id) }
+  let(:app) { Application.instance }
   let(:base_persistent_id) { 'foo' }
 
   describe '#initialize' do
@@ -65,27 +66,22 @@ describe Track do
   end
 
   describe '#pause' do
-    subject { track.pause }
+    subject(:pause) { track.pause }
 
-    before do
-      track.should_receive(:execute_script).
-        with('track/pause.scpt', track.persistent_id)
+    it 'calls application#pause' do
+      app.should_receive(:pause)
+      pause
     end
-
-    it { expect(subject).to be_eql(track) }
   end
 
   describe '#stop' do
-    subject { track.stop }
+    subject(:stop) { track.stop }
 
-    before do
-      track.should_receive(:execute_script).
-        with('track/stop.scpt', track.persistent_id)
+    it 'calls application#stop' do
+      app.should_receive(:stop)
+      stop
     end
-
-    it { expect(subject).to be_eql(track) }
    end
-
 
   describe '.find_by' do
     subject(:find) { Track.find_by(arg) }
