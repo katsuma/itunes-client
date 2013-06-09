@@ -44,9 +44,11 @@ track = application.add(path_to_your_sound_file)
 # Convert by default encoder
 encoded_track = track.convert
 
-# Find a track
-track = Track.find_by(name: "Hello, Goodbye")
-# => #<Itunes::Track:0x007fdd38a1d430 @persistent_id="571B6412CDADBC93", @name="Hello, Goodbye", @album="1", @artist="The Beatles", @track_count="27", @track_number="19">
+# Find all tracks
+tracks = Track.find_by(name: "Hello, Goodbye")
+# => [#<Itunes::Track:0x007fdd38a1d430 @persistent_id="571B6412CDADBC93", @name="Hello, Goodbye", @album="1", @artist="The Beatles", @track_count="27", @track_number="19">]
+
+track = tracks.first
 
 # Play track
 track.play
