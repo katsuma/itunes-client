@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'itunes/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rb-itunes"
+  spec.name          = "itunes-client"
   spec.version       = Itunes::VERSION
   spec.authors       = ["ryo katsuma"]
   spec.email         = ["katsuma@gmail.com"]
-  spec.description   = %q{iTunes control with Ruby}
-  spec.summary       = %q{A Ruby wrapper to control iTunes fully.}
-  spec.homepage      = "https://github.com/katsuma/rb-itunes"
+  spec.description   = %q{iTunes client with high level API}
+  spec.summary       = %q{itunes-client provides a high level API like ActiveRecord style to control your iTunes.}
+  spec.homepage      = "https://github.com/katsuma/itunes-client"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

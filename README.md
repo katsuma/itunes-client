@@ -1,24 +1,63 @@
-# Rb::Itunes
+# itunes-client
 
-TODO: Write a gem description
+`itunes-client` provides a high level API (like ActiveRecord style) to control your iTunes.
+
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'rb-itunes'
+```sh
+gem 'itunes-client'
+```
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install rb-itunes
+```sh
+$ gem install itunes-client
+```
+
+## Supported OS
+- OSX 10.8 (Mountain Lion)
+
+
+## Supported Ruby
+- 2.0.0
+- 1.9.3
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'itunes-client'
+include Itunes
+
+# Add a track to player
+application = Application.instance
+track = application.add(path_to_your_sound_file)
+
+# Convert by default encoder
+encoded_track = track.convert
+
+# Find a track
+track = Track.find_by(name: "Hello, Goodbye")
+# => #<Itunes::Track:0x007fdd38a1d430 @persistent_id="571B6412CDADBC93", @name="Hello, Goodbye", @album="1", @artist="The Beatles", @track_count="27", @track_number="19">
+
+# Play track
+track.play
+
+# Stop track
+track.stop
+```
+
+## License
+`itunes-client` is released under the MIT License.
+
 
 ## Contributing
 
