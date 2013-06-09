@@ -13,24 +13,12 @@ module Itunes
 
     def add(file_path)
       persistent_id = execute_script("#{script_dir}/add.scpt", file_path)
-      Track.new(persistent_id).tap do |track|
-        initialize_tracks
-        @tracks[persistent_id] = track
-      end
-    end
-
-    def find(persistent_id)
-      initialize_tracks
-      @tracks[persistent_id] || Track.new(persistent_id).tap { |t| @tracks[persistent_id] = t }
+      Track.find_by(persistent_id: persistent_id)
     end
 
     private
     def script_dir
       'application'
-    end
-
-    def initialize_tracks
-      @tracks = {} unless @tracks
     end
   end
 end

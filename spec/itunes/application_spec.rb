@@ -15,20 +15,23 @@ describe Application do
 
   describe '#add' do
     subject(:add) { app.add(file_name) }
-    let(:file_name) { 'foo.wav' }
-    it 'returns a track instance' do
-      app.should_receive(:execute_script).with('application/add.scpt', file_name).and_return('new_persistent_id')
-      add.should be_a(Track)
-    end
-  end
 
-  describe '#find' do
-    subject(:find) { app.find(persistent_id) }
-    let(:persistent_id) { 'foo' }
+    let(:file_name) { 'foo.wav' }
+    let(:new_persistent_id) { 'foo' }
+
+    before do
+      app.should_receive(:execute_script).
+        with('application/add.scpt', file_name).and_return(new_persistent_id)
+      Track.should_receive(:find_by).
+        with(persistent_id: new_persistent_id).
+        and_return(Track.new(persistent_id: new_persistent_id))
+    end
+
     it 'returns a track instance' do
-      track = find
-      track.should be_a(Track)
-      track.persistent_id.should == persistent_id
+      track = add
+
+      expect(track).to be_a(Track)
+      expect(track.persistent_id).to eq(new_persistent_id)
     end
   end
 end
