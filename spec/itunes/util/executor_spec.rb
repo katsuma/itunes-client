@@ -42,7 +42,29 @@ describe Itunes::Util::Executor do
         File.exist?(script_full_path)
       }.from(true).to(false)
     end
-
   end
 
+  describe '#generate_script_from_template' do
+    subject(:generate_script_from_template) { klass.generate_script_from_template(path, args) }
+
+    let(:path) { 'spec.scpt' }
+    let(:args) { { target: 'bar' } }
+
+    before do
+      script_path = "#{klass.script_base_dir}/#{path}"
+      open(script_path, 'w') { |f| f.write('#{target}') }
+    end
+
+    after do
+      FileUtils.rm("#{klass.script_base_dir}/#{path}")
+    end
+    it 'returns script path which replaces template key' do
+      script_path = generate_script_from_template
+      body = ''
+      open("#{klass.script_tmp_dir}/#{script_path}", 'r') do |f|
+        f.each { |line| body << line }
+      end
+      expect(body).to eq('bar')
+    end
+  end
 end
