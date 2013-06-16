@@ -58,6 +58,17 @@ module Itunes
       self
     end
 
+    def update_attributes(attributes)
+      raise ArgumentError.new('Invalid argument is given') unless attributes.is_a?(Hash)
+
+      records = update_attribute_records(attributes)
+      update_targets = { persistent_id: self.persistent_id, update_records: records }
+      script_name = generate_script_from_template('track/updater.tmpl.scpt', update_targets)
+      execute_template_based_script(script_name)
+      attributes.each { |key, val| send("#{key}=", val) }
+      self
+    end
+
     def assign_attributes_by(track_attributes)
       ATTRIBUTES.each { |attr| send("#{attr}=", track_attributes[attr.to_s]) }
     end
@@ -94,5 +105,14 @@ module Itunes
       Application.instance
     end
 
+    def update_attribute_records(args)
+      records = []
+      args.each do |key, val|
+        if ATTRIBUTES.include?(key)
+          records << "set #{key.to_s.gsub('_', ' ')} of specified_track to \"#{val}\""
+        end
+      end
+      records.join("\n")
+    end
   end
 end
