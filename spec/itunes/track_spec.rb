@@ -5,9 +5,13 @@ require 'itunes-client'
 include Itunes
 
 describe Track do
-  let(:track) { Track.new(persistent_id: base_persistent_id) }
+  let(:track) do
+    Track.new(persistent_id: base_persistent_id, name: base_name, album: base_album)
+  end
   let(:app) { Application.instance }
   let(:base_persistent_id) { 'foo' }
+  let(:base_name) { 'base name' }
+  let(:base_album) { 'base album' }
 
   describe '#initialize' do
     subject(:init) { Track.new(args) }
@@ -84,6 +88,42 @@ describe Track do
     end
    end
 
+  describe '#update_attributes' do
+    subject(:update) { track.update_attributes(attributes) }
+
+    context 'when nil argument is given' do
+      let(:attributes) { nil }
+      it 'raises an ArgumentError' do
+        expect { update }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when hash argument is given' do
+      let(:new_scpt)   { 'new.scpt' }
+      let(:new_name)   { 'new name' }
+      let(:new_album)  { 'new album' }
+      let(:attributes) { { name: new_name, album: new_album } }
+
+      before do
+        track.stub(:generate_script_from_template).
+          with('track/updater.tmpl.scpt', persistent_id: track.persistent_id, update_records: "set name of specified_track to \"#{new_name}\"\nset album of specified_track to \"#{new_album}\"").
+          and_return(new_scpt)
+        track.stub(:execute_template_based_script).
+          with(new_scpt)
+      end
+
+      it 'updates given attributes' do
+        update
+        expect(track.name).to be_eql(new_name)
+        expect(track.album).to be_eql(new_album)
+      end
+
+      it 'does not update persistent_id' do
+        expect { update }.not_to change { track.persistent_id }.from(base_persistent_id)
+      end
+    end
+  end
+
   describe '.find_by' do
     subject(:find) { Track.find_by(arg) }
     let(:finder_scpt) { 'track/finder.tmpl.scpt' }
@@ -102,7 +142,7 @@ describe Track do
       let(:name) { 'Hey Jude' }
 
       before do
-        Track.stub(:generate_script_from_templae).
+        Track.stub(:generate_script_from_template).
           and_return(new_scpt)
 
         Track.stub(:execute_template_based_script).
