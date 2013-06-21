@@ -156,4 +156,20 @@ describe Track do
       end
     end
   end
+
+  describe '.current_track' do
+    subject(:current_track) { Track.current_track }
+    let(:new_persistent_id) { 'new_persistent_id' }
+    before do
+      Track.should_receive(:execute_script).
+        with('track/current_track.scpt').
+        and_return(new_persistent_id)
+      Track.should_receive(:find_by).
+        with({ persistent_id: new_persistent_id }).
+        and_return([Track.new(persistent_id: new_persistent_id)])
+    end
+    it 'returns a current track' do
+      expect(current_track.persistent_id).to eq(new_persistent_id)
+    end
+  end
 end
