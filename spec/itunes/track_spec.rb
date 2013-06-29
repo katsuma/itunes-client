@@ -40,11 +40,10 @@ describe Track do
         and_return([Track.new(persistent_id: new_persistent_id)])
     end
 
-    it 'returns an array of new Track' do
-      converted_tracks = convert
-      expect(converted_tracks).to be_an(Array)
-      expect(converted_tracks.size).to eq(1)
-      expect(converted_tracks.first.persistent_id).to eq(new_persistent_id)
+    it 'returns a new Track' do
+      converted_track = convert
+      expect(converted_track).to be_a(Track)
+      expect(converted_track.persistent_id).to eq(new_persistent_id)
     end
   end
 
