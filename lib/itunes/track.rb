@@ -35,7 +35,7 @@ module Itunes
 
     def convert
       converted_persistent_id = execute_script('track/convert.scpt', self.persistent_id)
-      Track.find_by(persistent_id: converted_persistent_id)
+      Track.find_by(persistent_id: converted_persistent_id).first
     end
 
     def delete!
