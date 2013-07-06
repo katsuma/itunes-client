@@ -28,11 +28,8 @@ describe Application do
     end
 
     it 'returns an array of track instance' do
-      tracks = add
-
-      expect(tracks).to be_an(Array)
-      expect(tracks.size).to eq(1)
-      expect(tracks.first.persistent_id).to eq(new_persistent_id)
+      expect(add).to be_a(Track)
+      expect(add.persistent_id).to eq(new_persistent_id)
     end
   end
 
