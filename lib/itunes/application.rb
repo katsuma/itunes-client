@@ -13,7 +13,7 @@ module Itunes
 
     def add(file_path)
       persistent_id = execute_script("#{script_dir}/add.scpt", file_path)
-      Track.find_by(persistent_id: persistent_id)
+      Track.find_by(persistent_id: persistent_id).first
     end
 
     def stop
