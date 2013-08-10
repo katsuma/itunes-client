@@ -49,12 +49,12 @@ module Itunes
     end
 
     def pause
-      application.pause
+      Itunes.pause
       self
     end
 
     def stop
-      application.stop
+      Itunes.stop
       self
     end
 
@@ -105,10 +105,6 @@ module Itunes
     private_class_method :find_conditions
 
     private
-
-    def application
-      Application.instance
-    end
 
     def update_attribute_records(args)
       records = []
