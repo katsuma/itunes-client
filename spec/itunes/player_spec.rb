@@ -7,7 +7,7 @@ include Itunes
 describe Player do
   let(:player) { Itunes::Player }
 
-  describe '#add' do
+  describe '.add' do
     subject(:add) { player.add(file_name) }
 
     let(:file_name) { 'foo.wav' }
@@ -27,21 +27,21 @@ describe Player do
     end
   end
 
-  describe '#pause' do
+  describe '.pause' do
     it 'calls pause.scpt' do
       player.should_receive(:execute_script).with('player/pause.scpt')
       player.pause
     end
   end
 
-  describe '#stop' do
+  describe '.stop' do
     it 'calls stop.scpt' do
       player.should_receive(:execute_script).with('player/stop.scpt')
       player.stop
     end
   end
 
-  describe '#playing?' do
+  describe '.playing?' do
     subject { player.playing? }
     context 'when iTunes plays a track' do
       before { player.should_receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
@@ -54,7 +54,7 @@ describe Player do
     end
   end
 
-  describe '#paused?' do
+  describe '.paused?' do
     subject { player.paused? }
     context 'when iTunes plays a track' do
       before { player.should_receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
@@ -67,7 +67,7 @@ describe Player do
     end
   end
 
-  describe '#stopped?' do
+  describe '.stopped?' do
     subject { player.stopped? }
     context 'when iTunes plays a track' do
       before { player.should_receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
@@ -80,7 +80,7 @@ describe Player do
     end
   end
 
-  describe '#next_track' do
+  describe '.next_track' do
     before do
       player.should_receive(:execute_script).
         with('player/next_track.scpt').and_return(new_persistent_id)
@@ -96,7 +96,7 @@ describe Player do
     end
   end
 
-  describe '#prev_track' do
+  describe '.prev_track' do
     before do
       player.should_receive(:execute_script).
         with('player/prev_track.scpt').and_return(new_persistent_id)
