@@ -4,7 +4,7 @@ require 'itunes-client'
 
 include Itunes
 
-describe Application do
+describe Player do
   let(:app) { Itunes }
 
   describe '#add' do

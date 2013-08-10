@@ -5,7 +5,7 @@ require 'itunes/track'
 require 'itunes/util'
 
 module Itunes
-  module Application
+  module Player
     include Itunes::Util::Executor
 
     def add(file_path)
