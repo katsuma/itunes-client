@@ -8,7 +8,7 @@ describe Track do
   let(:track) do
     Track.new(persistent_id: base_persistent_id, name: base_name, album: base_album)
   end
-  let(:app) { Application.instance }
+  let(:app) { Itunes }
   let(:base_persistent_id) { 'foo' }
   let(:base_name) { 'base name' }
   let(:base_album) { 'base album' }

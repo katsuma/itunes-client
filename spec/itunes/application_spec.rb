@@ -5,13 +5,7 @@ require 'itunes-client'
 include Itunes
 
 describe Application do
-  let(:app) { described_class.instance }
-
-  describe '#initialize' do
-    it 'raises an Error' do
-      expect { described_class.new }.to raise_error
-    end
-  end
+  let(:app) { Itunes }
 
   describe '#add' do
     subject(:add) { app.add(file_name) }

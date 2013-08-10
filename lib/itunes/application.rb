@@ -5,11 +5,8 @@ require 'itunes/track'
 require 'itunes/util'
 
 module Itunes
-  class Application
-    include Singleton
+  module Application
     include Itunes::Util::Executor
-
-    attr_accessor :tracks
 
     def add(file_path)
       persistent_id = execute_script("#{script_dir}/add.scpt", file_path)
