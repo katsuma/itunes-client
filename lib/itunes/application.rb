@@ -23,6 +23,18 @@ module Itunes
       self
     end
 
+    def playing?
+      execute_script("#{script_dir}/player_state.scpt") == 'playing'
+    end
+
+    def paused?
+      execute_script("#{script_dir}/player_state.scpt") == 'paused'
+    end
+
+    def stopped?
+      execute_script("#{script_dir}/player_state.scpt") == 'stopped'
+    end
+
     private
     def script_dir
       'application'

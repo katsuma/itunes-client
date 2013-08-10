@@ -40,4 +40,44 @@ describe Application do
       app.stop
     end
   end
+
+  describe '#playing?' do
+    subject { app.playing? }
+    context 'when iTunes plays a track' do
+      before { app.should_receive(:execute_script).with('application/player_state.scpt').and_return('playing') }
+      it { expect(subject).to be_true }
+    end
+
+    context 'when iTunes stops a track' do
+      before { app.should_receive(:execute_script).with('application/player_state.scpt').and_return('stopped') }
+      it { expect(subject).to be_false }
+    end
+  end
+
+  describe '#paused?' do
+    subject { app.paused? }
+    context 'when iTunes plays a track' do
+      before { app.should_receive(:execute_script).with('application/player_state.scpt').and_return('playing') }
+      it { expect(subject).to be_false }
+    end
+
+    context 'when iTunes pauses' do
+      before { app.should_receive(:execute_script).with('application/player_state.scpt').and_return('paused') }
+      it { expect(subject).to be_true }
+    end
+  end
+
+  describe '#stopped?' do
+    subject { app.stopped? }
+    context 'when iTunes plays a track' do
+      before { app.should_receive(:execute_script).with('application/player_state.scpt').and_return('playing') }
+      it { expect(subject).to be_false }
+    end
+
+    context 'when iTunes stops a track' do
+      before { app.should_receive(:execute_script).with('application/player_state.scpt').and_return('stopped') }
+      it { expect(subject).to be_true }
+    end
+  end
+
 end
