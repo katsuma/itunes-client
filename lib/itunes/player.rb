@@ -51,6 +51,11 @@ module Itunes
         Track.find_by(persistent_id: persistent_id).first
       end
 
+      def current_track
+        persistent_id = execute_script("#{script_dir}/current_track.scpt")
+        Track.find_by(persistent_id: persistent_id).first
+      end
+
       private
       def script_dir
         'player'
