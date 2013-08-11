@@ -38,8 +38,7 @@ require 'itunes-client'
 include Itunes
 
 # Add a track to player
-application = Application.instance
-track = application.add(path_to_your_sound_file)
+track = Itunes::Player.add(path_to_your_sound_file)
 
 # Convert by default encoder
 encoded_track = track.convert
