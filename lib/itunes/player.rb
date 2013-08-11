@@ -14,6 +14,11 @@ module Itunes
         Track.find_by(persistent_id: persistent_id).first
       end
 
+      def play
+        execute_script("#{script_dir}/play.scpt")
+        self
+      end
+
       def stop
         execute_script("#{script_dir}/stop.scpt")
         self

@@ -41,6 +41,13 @@ describe Player do
     end
   end
 
+  describe '.play' do
+    it 'calls play.scpt' do
+      player.should_receive(:execute_script).with('player/play.scpt')
+      player.play
+    end
+  end
+
   describe '.playing?' do
     subject { player.playing? }
     context 'when iTunes plays a track' do
