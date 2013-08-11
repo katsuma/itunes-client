@@ -88,11 +88,6 @@ module Itunes
       end
     end
 
-    def self.current_track
-      persistent_id = execute_script('track/current_track.scpt')
-      Track.find_by(persistent_id: persistent_id).first
-    end
-
     def self.find_conditions(args)
       conditions = []
       args.each do |key, val|
