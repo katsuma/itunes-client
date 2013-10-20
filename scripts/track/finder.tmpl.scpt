@@ -41,6 +41,6 @@ on replaceText(someText, oldItem, newItem)
           set AppleScript's text item delimiters to tempTID
           error errorMessage number errorNumber -- pass it on
      end try
-     
+
      return someText
 end replaceText
