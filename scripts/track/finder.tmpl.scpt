@@ -7,8 +7,6 @@ tell application "iTunes"
 	repeat with specified_track in specified_tracks
     set props to {}
 
-    set prop_name to name of specified_track
-
     set end of props to "{"
     set end of props to ("\"persistent_id\":\"" & persistent ID of specified_track & "\",")
     set end of props to ("\"name\":\"" & my escape_quote(name of specified_track) & "\",")
