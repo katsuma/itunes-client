@@ -134,6 +134,13 @@ describe Track do
       end
     end
 
+    context 'when unsupported symbol is given' do
+      let(:arg) { :first }
+      it 'raises an ArgumentError' do
+        expect { find }.to raise_error(ArgumentError)
+      end
+    end
+
     context 'when hash argument is given' do
       let(:arg) { { name: name } }
       let(:new_scpt) { 'new.scpt' }
@@ -153,6 +160,21 @@ describe Track do
         expect(tracks.size).to eq(1)
         expect(tracks.first.name).to eq(name)
       end
+    end
+  end
+
+  describe '.all' do
+    subject(:all) { Track.all }
+
+    it 'calls find_by(:all)' do
+      Track.stub(:generate_script_from_template).
+        and_return('new.scpt')
+
+      Track.stub(:execute_template_based_script).
+        with('new.scpt').
+        and_return([].to_json)
+
+      all
     end
   end
 end

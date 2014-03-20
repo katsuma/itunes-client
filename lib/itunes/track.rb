@@ -78,8 +78,17 @@ module Itunes
     def self.find_by(arg)
       raise ArgumentError.new('nil argument is given') if arg.nil?
 
-      conditions = find_conditions(arg)
-      script_name = generate_script_from_template('track/finder.tmpl.scpt', conditions: conditions)
+      if arg.is_a?(Hash)
+        conditions = find_conditions(arg)
+        whose = 'whose'
+      elsif arg == :all
+        conditions = ''
+        whose = ''
+      else
+        raise ArgumentError.new('unsupported rgument is given')
+      end
+
+      script_name = generate_script_from_template('track/finder.tmpl.scpt', whose: whose, conditions: conditions)
       track_response = execute_template_based_script(script_name)
 
       tracks_attributes = ::JSON.parse(track_response)
@@ -88,6 +97,10 @@ module Itunes
           track.assign_attributes_by(track_attributes)
         end
       end
+    end
+
+    def self.all
+      find_by(:all)
     end
 
     def self.find_conditions(args)
