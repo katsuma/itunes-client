@@ -1,7 +1,5 @@
 tell application "iTunes"
-  set specified_tracks to (every track whose #{conditions})
-
-
+  set specified_tracks to (every track #{whose} #{conditions})
 	set json to "["
 
 	repeat with specified_track in specified_tracks
@@ -13,7 +11,8 @@ tell application "iTunes"
     set end of props to ("\"album\":\"" & my escape_quote(album of specified_track) & "\",")
     set end of props to ("\"artist\":\"" & my escape_quote(artist of specified_track) & "\",")
     set end of props to ("\"track_count\":\"" & track count of specified_track & "\",")
-    set end of props to ("\"track_number\":\"" & track number of specified_track & "\"")
+    set end of props to ("\"track_number\":\"" & track number of specified_track & "\",")
+    set end of props to ("\"year\":\"" & year of specified_track & "\"")
     set end of props to "}"
 
     set json to json & props as string & ","
