@@ -59,7 +59,7 @@ module Itunes
       self
     end
 
-    def update_attributes(attributes)
+    def update(attributes)
       raise ArgumentError.new('Invalid argument is given') unless attributes.is_a?(Hash)
 
       records = update_attribute_records(attributes)
@@ -69,6 +69,7 @@ module Itunes
       attributes.each { |key, val| send("#{key}=", val) }
       self
     end
+    alias_method :update_attributes, :update
 
     def assign_attributes_by(track_attributes)
       ATTRIBUTES.each { |attr| send("#{attr}=", track_attributes[attr.to_s]) }
