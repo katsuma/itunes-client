@@ -87,8 +87,8 @@ describe Track do
     end
    end
 
-  describe '#update_attributes' do
-    subject(:update) { track.update_attributes(attributes) }
+  describe '#update' do
+    subject(:update) { track.update(attributes) }
 
     context 'when nil argument is given' do
       let(:attributes) { nil }
