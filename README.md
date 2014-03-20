@@ -29,6 +29,7 @@ $ gem install itunes-client
 
 
 ## Supported Ruby
+- 2.1.0
 - 2.0.0
 - 1.9.3
 
@@ -71,4 +72,3 @@ track.stop
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/katsuma/itunes-client/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
