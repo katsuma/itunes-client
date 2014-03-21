@@ -8,7 +8,7 @@ describe Track do
   let(:track) do
     Track.new(persistent_id: base_persistent_id, name: base_name, album: base_album)
   end
-  let(:app) { Itunes }
+  let(:player) { Itunes::Player }
   let(:base_persistent_id) { 'foo' }
   let(:base_name) { 'base name' }
   let(:base_album) { 'base album' }
@@ -72,8 +72,8 @@ describe Track do
   describe '#pause' do
     subject(:pause) { track.pause }
 
-    it 'calls application#pause' do
-      app.should_receive(:pause)
+    it 'calls player#pause' do
+      player.should_receive(:pause)
       pause
     end
   end
@@ -81,8 +81,8 @@ describe Track do
   describe '#stop' do
     subject(:stop) { track.stop }
 
-    it 'calls application#stop' do
-      app.should_receive(:stop)
+    it 'calls player#stop' do
+      player.should_receive(:stop)
       stop
     end
    end
