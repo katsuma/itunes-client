@@ -50,12 +50,12 @@ module Itunes
     end
 
     def pause
-      Itunes.pause
+      Itunes::Player.pause
       self
     end
 
     def stop
-      Itunes.stop
+      Itunes::Player.stop
       self
     end
 
