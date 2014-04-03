@@ -8,8 +8,14 @@ module Itunes
   class Player
     extend Itunes::Util::Executor
 
+    class FileNotFoundError < StandardError; end;
+    class EmptyFileError    < StandardError; end;
+
     class << self
       def add(file_path)
+        raise FileNotFoundError unless File.exist?(file_path)
+        raise EmptyFileError    unless File.open(file_path).size > 0
+
         persistent_id = execute_script("#{script_dir}/add.scpt", file_path)
         Track.find_by(persistent_id: persistent_id).first
       end
