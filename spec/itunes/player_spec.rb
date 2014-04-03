@@ -8,20 +8,46 @@ describe Player do
   describe '.add' do
     subject(:add) { Player.add(file_name) }
 
-    let(:file_name) { 'foo.wav' }
+    let(:file_name) { '/tmp/foo.wav' }
     let(:new_persistent_id) { 'foo' }
 
     before do
-      Player.should_receive(:execute_script).
-        with('player/add.scpt', file_name).and_return(new_persistent_id)
-      Track.should_receive(:find_by).
-        with(persistent_id: new_persistent_id).
-        and_return([Track.new(persistent_id: new_persistent_id)])
+      FileUtils.rm_f(file_name)
     end
 
-    it 'returns an array of track instance' do
-      expect(add).to be_a(Track)
-      expect(add.persistent_id).to eq(new_persistent_id)
+    context 'when existent file is given' do
+      before do
+        `echo "foo" > #{file_name}`
+      end
+
+      before do
+        Player.should_receive(:execute_script).
+          with('player/add.scpt', file_name).and_return(new_persistent_id)
+        Track.should_receive(:find_by).
+          with(persistent_id: new_persistent_id).
+          and_return([Track.new(persistent_id: new_persistent_id)])
+      end
+
+      it 'returns an array of track instance', fakefs: true do
+        expect(add).to be_a(Track)
+        expect(add.persistent_id).to eq(new_persistent_id)
+      end
+    end
+
+    context 'when zero byte file is given' do
+      before do
+        FileUtils.touch(file_name)
+      end
+
+      it 'raises an EmptyFileError', fakefs: true do
+        expect { add }.to raise_error(Itunes::Player::EmptyFileError)
+      end
+    end
+
+    context 'when non existent file is given' do
+      it 'raises a FileNotFoundrror', fakefs: true do
+        expect { add }.to raise_error(Itunes::Player::FileNotFoundError)
+      end
     end
   end
 
