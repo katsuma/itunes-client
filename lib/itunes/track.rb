@@ -59,6 +59,11 @@ module Itunes
       self
     end
 
+    def track_time
+      Itunes::Player.track_time
+      self
+    end
+
     def update(attributes)
       raise ArgumentError.new('Invalid argument is given') unless attributes.is_a?(Hash)
 
