@@ -16,7 +16,7 @@ describe Itunes::Util::Executor do
     let(:result) { { status: 'ok' }.to_json }
 
     it 'returns a script result' do
-      Open3.should_receive(:capture2).with("osascript #{klass.script_base_dir}/#{path} #{args}").and_return(result)
+      expect(Open3).to receive(:capture2).with("osascript #{klass.script_base_dir}/#{path} #{args}").and_return(result)
       expect(execute_script).to eq(result)
     end
   end
@@ -29,7 +29,7 @@ describe Itunes::Util::Executor do
     let(:result) { { status: 'ok' }.to_json }
 
     before do
-      Open3.should_receive(:capture2).with("osascript #{script_full_path}").and_return(result)
+      expect(Open3).to receive(:capture2).with("osascript #{script_full_path}").and_return(result)
       FileUtils.touch(script_full_path)
     end
 

@@ -8,7 +8,7 @@ require 'coveralls'
 Bundler.setup(:default, :development)
 
 RSpec.configure do |config|
-  config.color_enabled = true
+  config.color = true
   config.tty = true
   #config.formatter = :documentation
   config.include FakeFS::SpecHelpers, fakefs: true
