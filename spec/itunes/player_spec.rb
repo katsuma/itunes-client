@@ -21,9 +21,9 @@ describe Player do
       end
 
       before do
-        Player.should_receive(:execute_script).
+        expect(Player).to receive(:execute_script).
           with('player/add.scpt', file_name).and_return(new_persistent_id)
-        Track.should_receive(:find_by).
+        expect(Track).to receive(:find_by).
           with(persistent_id: new_persistent_id).
           and_return([Track.new(persistent_id: new_persistent_id)])
       end
@@ -53,21 +53,21 @@ describe Player do
 
   describe '.pause' do
     it 'calls pause.scpt' do
-      Player.should_receive(:execute_script).with('player/pause.scpt')
+      expect(Player).to receive(:execute_script).with('player/pause.scpt')
       Player.pause
     end
   end
 
   describe '.stop' do
     it 'calls stop.scpt' do
-      Player.should_receive(:execute_script).with('player/stop.scpt')
+      expect(Player).to receive(:execute_script).with('player/stop.scpt')
       Player.stop
     end
   end
 
   describe '.play' do
     it 'calls play.scpt' do
-      Player.should_receive(:execute_script).with('player/play.scpt')
+      expect(Player).to receive(:execute_script).with('player/play.scpt')
       Player.play
     end
   end
@@ -75,47 +75,47 @@ describe Player do
   describe '.playing?' do
     subject { Player.playing? }
     context 'when iTunes plays a track' do
-      before { Player.should_receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
-      it { expect(subject).to be_true }
+      before { expect(Player).to receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
+      it { expect(subject).to be_truthy }
     end
 
     context 'when iTunes stops a track' do
-      before { Player.should_receive(:execute_script).with('player/player_state.scpt').and_return('stopped') }
-      it { expect(subject).to be_false }
+      before { expect(Player).to receive(:execute_script).with('player/player_state.scpt').and_return('stopped') }
+      it { expect(subject).to be_falsey }
     end
   end
 
   describe '.paused?' do
     subject { Player.paused? }
     context 'when iTunes plays a track' do
-      before { Player.should_receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
-      it { expect(subject).to be_false }
+      before { expect(Player).to receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
+      it { expect(subject).to be_falsey }
     end
 
     context 'when iTunes pauses' do
-      before { Player.should_receive(:execute_script).with('player/player_state.scpt').and_return('paused') }
-      it { expect(subject).to be_true }
+      before { expect(Player).to receive(:execute_script).with('player/player_state.scpt').and_return('paused') }
+      it { expect(subject).to be_truthy }
     end
   end
 
   describe '.stopped?' do
     subject { Player.stopped? }
     context 'when iTunes plays a track' do
-      before { Player.should_receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
-      it { expect(subject).to be_false }
+      before { expect(Player).to receive(:execute_script).with('player/player_state.scpt').and_return('playing') }
+      it { expect(subject).to be_falsey }
     end
 
     context 'when iTunes stops a track' do
-      before { Player.should_receive(:execute_script).with('player/player_state.scpt').and_return('stopped') }
-      it { expect(subject).to be_true }
+      before { expect(Player).to receive(:execute_script).with('player/player_state.scpt').and_return('stopped') }
+      it { expect(subject).to be_truthy }
     end
   end
 
   describe '.next_track' do
     before do
-      Player.should_receive(:execute_script).
+      expect(Player).to receive(:execute_script).
         with('player/next_track.scpt').and_return(new_persistent_id)
-      Track.should_receive(:find_by).
+      expect(Track).to receive(:find_by).
         with(persistent_id: new_persistent_id).
         and_return([Track.new(persistent_id: new_persistent_id)])
     end
@@ -129,9 +129,9 @@ describe Player do
 
   describe '.prev_track' do
     before do
-      Player.should_receive(:execute_script).
+      expect(Player).to receive(:execute_script).
         with('player/prev_track.scpt').and_return(new_persistent_id)
-      Track.should_receive(:find_by).
+      expect(Track).to receive(:find_by).
         with(persistent_id: new_persistent_id).
         and_return([Track.new(persistent_id: new_persistent_id)])
     end
@@ -145,10 +145,10 @@ describe Player do
 
   describe '.current_track' do
     before do
-      Player.should_receive(:execute_script).
+      expect(Player).to receive(:execute_script).
         with('player/current_track.scpt').
         and_return(new_persistent_id)
-      Track.should_receive(:find_by).
+      expect(Track).to receive(:find_by).
         with({ persistent_id: new_persistent_id }).
         and_return([Track.new(persistent_id: new_persistent_id)])
     end

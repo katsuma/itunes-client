@@ -32,10 +32,10 @@ describe Track do
     let(:new_persistent_id) { 'bar' }
 
     before do
-      track.should_receive(:execute_script).
+      expect(track).to receive(:execute_script).
         with('track/convert.scpt', base_persistent_id).
         and_return(new_persistent_id)
-      Track.should_receive(:find_by).
+      expect(Track).to receive(:find_by).
         with(persistent_id: new_persistent_id).
         and_return([Track.new(persistent_id: new_persistent_id)])
     end
@@ -51,7 +51,7 @@ describe Track do
     subject { track.delete! }
 
     before do
-      track.should_receive(:execute_script).
+      expect(track).to receive(:execute_script).
         with('track/delete.scpt', track.persistent_id)
     end
 
@@ -62,7 +62,7 @@ describe Track do
     subject { track.play }
 
     before do
-      track.should_receive(:execute_script).
+      expect(track).to receive(:execute_script).
         with('track/play.scpt', track.persistent_id)
     end
 
@@ -73,7 +73,7 @@ describe Track do
     subject(:pause) { track.pause }
 
     it 'calls player#pause' do
-      player.should_receive(:pause)
+      expect(player).to receive(:pause)
       pause
     end
   end
@@ -82,7 +82,7 @@ describe Track do
     subject(:stop) { track.stop }
 
     it 'calls player#stop' do
-      player.should_receive(:stop)
+      expect(player).to receive(:stop)
       stop
     end
    end
@@ -104,10 +104,10 @@ describe Track do
       let(:attributes) { { name: new_name, album: new_album } }
 
       before do
-        track.stub(:generate_script_from_template).
+        allow(track).to receive(:generate_script_from_template).
           with('track/updater.tmpl.scpt', persistent_id: track.persistent_id, update_records: "set name of specified_track to \"#{new_name}\"\nset album of specified_track to \"#{new_album}\"").
           and_return(new_scpt)
-        track.stub(:execute_template_based_script).
+        allow(track).to receive(:execute_template_based_script).
           with(new_scpt)
       end
 
@@ -148,10 +148,10 @@ describe Track do
       let(:name) { 'Hey Jude' }
 
       before do
-        Track.stub(:generate_script_from_template).
+        allow(Track).to receive(:generate_script_from_template).
           and_return(new_scpt)
 
-        Track.stub(:execute_template_based_script).
+        allow(Track).to receive(:execute_template_based_script).
           and_return([{ persistent_id: new_persistent_id, name: name }].to_json)
       end
 
@@ -167,10 +167,10 @@ describe Track do
     subject(:all) { Track.all }
 
     it 'calls find_by(:all)' do
-      Track.stub(:generate_script_from_template).
+      allow(Track).to receive(:generate_script_from_template).
         and_return('new.scpt')
 
-      Track.stub(:execute_template_based_script).
+      allow(Track).to receive(:execute_template_based_script).
         with('new.scpt').
         and_return([].to_json)
 
