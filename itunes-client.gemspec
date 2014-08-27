@@ -19,7 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rake", "~> 10.0.3"
-  spec.add_development_dependency "rspec", "~> 2.13.0"
+  spec.add_development_dependency "rspec", "~> 2.99.0"
+  spec.add_development_dependency "transpec"
   spec.add_development_dependency "rb-fsevent", "~> 0.9.3"
   spec.add_development_dependency "guard", "~> 1.8.1"
   spec.add_development_dependency "guard-rspec", "~> 3.0.2"
