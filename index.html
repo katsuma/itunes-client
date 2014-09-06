@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Itunes-client by katsuma</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Itunes-client</h1>
+        <h2>itunes-client provides a high level API (like ActiveRecord style) to control your iTunes.</h2>
+        <a href="https://github.com/katsuma/itunes-client" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="itunes-client--" class="anchor" href="#itunes-client--"><span class="octicon octicon-link"></span></a>itunes-client <a href="https://travis-ci.org/katsuma/itunes-client"><img src="https://travis-ci.org/katsuma/itunes-client.png?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/katsuma/itunes-client"><img src="https://coveralls.io/repos/katsuma/itunes-client/badge.png" alt="Coverage Status"></a>
+</h1>
+
+<p><code>itunes-client</code> provides a high level API (like ActiveRecord style) to control your iTunes.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<div class="highlight highlight-sh"><pre>gem <span class="s1">'itunes-client'</span>
+</pre></div>
+
+<p>And then execute:</p>
+
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>bundle
+</pre></div>
+
+<p>Or install it yourself as:</p>
+
+<div class="highlight highlight-sh"><pre><span class="nv">$ </span>gem install itunes-client
+</pre></div>
+
+<h2>
+<a name="supported-os" class="anchor" href="#supported-os"><span class="octicon octicon-link"></span></a>Supported OS</h2>
+
+<ul>
+<li>OSX 10.9 (Mavericks)</li>
+<li>OSX 10.8 (Mountain Lion)</li>
+</ul><h2>
+<a name="supported-ruby" class="anchor" href="#supported-ruby"><span class="octicon octicon-link"></span></a>Supported Ruby</h2>
+
+<ul>
+<li>2.1.0</li>
+<li>2.0.0</li>
+<li>1.9.3</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'itunes-client'</span>
+<span class="kp">include</span> <span class="no">Itunes</span>
+
+<span class="c1"># Add a track to player</span>
+<span class="n">track</span> <span class="o">=</span> <span class="no">Itunes</span><span class="o">::</span><span class="no">Player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path_to_your_sound_file</span><span class="p">)</span>
+
+<span class="c1"># Convert by default encoder</span>
+<span class="n">encoded_track</span> <span class="o">=</span> <span class="n">track</span><span class="o">.</span><span class="n">convert</span>
+
+<span class="c1"># Find all tracks</span>
+<span class="n">tracks</span> <span class="o">=</span> <span class="no">Track</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"Hello, Goodbye"</span><span class="p">)</span>
+<span class="c1"># =&gt; [#&lt;Itunes::Track:0x007fdd38a1d430 @persistent_id="571B6412CDADBC93", @name="Hello, Goodbye", @album="1", @artist="The Beatles", @track_count="27", @track_number="19"&gt;]</span>
+
+<span class="n">track</span> <span class="o">=</span> <span class="n">tracks</span><span class="o">.</span><span class="n">first</span>
+
+<span class="c1"># Play track</span>
+<span class="n">track</span><span class="o">.</span><span class="n">play</span>
+
+<span class="c1"># Stop track</span>
+<span class="n">track</span><span class="o">.</span><span class="n">stop</span>
+</pre></div>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><code>itunes-client</code> is released under the MIT License.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/katsuma/itunes-client/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/katsuma/itunes-client/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/katsuma/itunes-client"></a> is maintained by <a href="https://github.com/katsuma">katsuma</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
