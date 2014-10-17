@@ -24,8 +24,8 @@ $ gem install itunes-client
 ```
 
 ## Supported OS
-- OSX 10.9 (Mavericks)
-- OSX 10.8 (Mountain Lion)
+- OSX Yosemite
+- OSX Mavericks
 
 
 ## Supported Ruby
