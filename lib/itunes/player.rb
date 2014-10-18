@@ -3,6 +3,7 @@ require 'singleton'
 
 require 'itunes/track'
 require 'itunes/util'
+require 'itunes/volume'
 
 module Itunes
   class Player
@@ -18,6 +19,10 @@ module Itunes
 
         persistent_id = execute_script("#{script_dir}/add.scpt", file_path)
         Track.find_by(persistent_id: persistent_id).first
+      end
+
+      def volume
+        Volume
       end
 
       def play
