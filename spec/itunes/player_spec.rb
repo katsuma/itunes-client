@@ -72,6 +72,34 @@ describe Player do
     end
   end
 
+  describe '.lower_volume'
+    it 'calls lower_volume.scpt' do
+      expect(Player).to receive(:execute_script).with('player/lower_volume.scpt')
+      Player.lower_volume
+    end
+  end
+
+  describe '.raise_volume'
+    it 'calls raise_volume.scpt' do
+      expect(Player).to receive(:execute_script).with('player/raise_volume.scpt')
+      Player.raise_volume
+    end
+  end
+
+  describe '.mute_volume'
+    it 'calls mute_volume.scpt' do
+      expect(Player).to receive(:execute_script).with('player/mute_volume.scpt')
+      Player.mute_volume
+    end
+  end
+
+  describe '.unmute_volume'
+    it 'calls unmute_volume.scpt' do
+      expect(Player).to receive(:execute_script).with('player/unmute_volume.scpt')
+      Player.unmute_volume
+    end
+  end
+
   describe '.playing?' do
     subject { Player.playing? }
     context 'when iTunes plays a track' do

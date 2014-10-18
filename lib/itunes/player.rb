@@ -35,6 +35,26 @@ module Itunes
         self
       end
 
+      def lower_volume
+        execute_script("#{script_dir}/lower_volume.scpt")
+        self
+      end
+
+      def raise_volume
+        execute_script("#{script_dir}/inc_volume.scpt")
+        self
+      end
+
+      def mute_volume
+        execute_script("#{script_dir}/mute_volume.scpt")
+        self
+      end
+
+      def unmute_volume
+        execute_script("#{script_dir}/unmute_volume.scpt")
+        self
+      end
+
       def playing?
         execute_script("#{script_dir}/player_state.scpt") == 'playing'
       end
