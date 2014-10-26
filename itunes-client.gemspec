@@ -19,12 +19,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rake", "~> 10.3.2"
-  spec.add_development_dependency "rspec", "~> 3.0.0"
+  spec.add_development_dependency "rspec", "~> 3.1.0"
   spec.add_development_dependency "rb-fsevent", "~> 0.9.4"
   spec.add_development_dependency "guard", "~> 2.6.1"
   spec.add_development_dependency "guard-rspec", "~> 4.3.1"
   spec.add_development_dependency "growl", "~> 1.0.3"
-  spec.add_development_dependency "fakefs", "~> 0.5.1"
+  spec.add_development_dependency "fakefs", "~> 0.6.0"
   spec.add_development_dependency "simplecov", "~> 0.9.0"
   spec.add_development_dependency "coveralls", "~> 0.7.1"
   spec.add_development_dependency "pry", "~> 0.10.1"
