@@ -118,6 +118,15 @@ describe Player do
     end
   end
 
+  describe '.position=' do
+    let(:position) { 10 }
+
+    it 'sets player position by argument' do
+      expect(Player).to receive(:execute_script).with('player/set_position.scpt', position)
+      Player.position = position
+    end
+  end
+
   describe '.next_track' do
     before do
       expect(Player).to receive(:execute_script).

@@ -51,7 +51,7 @@ module Itunes
         execute_script("#{script_dir}/position.scpt").to_f
       end
 
-      def position= position
+      def position=(position)
         execute_script("#{script_dir}/set_position.scpt", position).to_f
       end
 
