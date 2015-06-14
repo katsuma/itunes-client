@@ -111,6 +111,13 @@ describe Player do
     end
   end
 
+  describe '.position' do
+    it 'calls position.scpt' do
+      expect(Player).to receive(:execute_script).with('player/position.scpt')
+      Player.position
+    end
+  end
+
   describe '.next_track' do
     before do
       expect(Player).to receive(:execute_script).
