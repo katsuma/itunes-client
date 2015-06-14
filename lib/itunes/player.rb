@@ -51,6 +51,10 @@ module Itunes
         execute_script("#{script_dir}/position.scpt").to_f
       end
 
+      def position= position
+        execute_script("#{script_dir}/set_position.scpt", position).to_f
+      end
+
       def next_track
         persistent_id = execute_script("#{script_dir}/next_track.scpt")
         Track.find_by(persistent_id: persistent_id).first
