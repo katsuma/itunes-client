@@ -12,7 +12,11 @@ tell application "iTunes"
     set end of props to ("\"artist\":\"" & my escape_quote(artist of specified_track) & "\",")
     set end of props to ("\"track_count\":\"" & track count of specified_track & "\",")
     set end of props to ("\"track_number\":\"" & track number of specified_track & "\",")
-    set end of props to ("\"year\":\"" & year of specified_track & "\"")
+    set end of props to ("\"year\":\"" & year of specified_track & "\",")
+    set end of props to ("\"video_kind\":\"" & video kind of specified_track & "\",")
+    set end of props to ("\"show\":\"" & show of specified_track & "\",")
+    set end of props to ("\"season_number\":\"" & season number of specified_track & "\",")
+    set end of props to ("\"episode_number\":\"" & episode number of specified_track & "\"")
     set end of props to "}"
 
     set json to json & props as string & ","
