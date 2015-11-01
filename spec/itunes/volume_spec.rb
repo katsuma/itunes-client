@@ -5,8 +5,8 @@ require 'itunes-client'
 include Itunes
 
 describe Volume do
-  let(:volume) { Itunes::Player.volume }
-  let(:level) { Fixnum }
+  let(:volume) { Volume }
+  let(:level) { an_instance_of(Fixnum) }
 
   describe '.up' do
     it 'calls up.scpt' do
