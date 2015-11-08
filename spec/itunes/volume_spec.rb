@@ -39,7 +39,7 @@ describe Volume do
   describe '.value' do
     subject { volume.value }
     context 'when iTunes returns volume level' do
-      before { expect(Volume).to receive(:execute_script).with('volume/value.scpt').and_return(volume.value) }
+      before { expect(Volume).to receive(:execute_script).with('volume/value.scpt').and_return("30") }
       it { expect(subject).to be_a_kind_of(String) }
     end
   end
