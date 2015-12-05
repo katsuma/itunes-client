@@ -26,7 +26,7 @@ module Itunes
       end
 
       def value
-        execute_script("#{script_dir}/value.scpt")
+        execute_script("#{script_dir}/value.scpt").to_i
       end
 
       private
