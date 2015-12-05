@@ -29,7 +29,7 @@ $ gem install itunes-client
 
 
 ## Supported Ruby
-- 2.2.0-preview1
+- 2.2.0
 - 2.1.3
 - 2.0.0
 - 1.9.3
@@ -59,19 +59,19 @@ track.play
 track.stop
 
 # Control volume
-volume = Itunes::Volume.new
+volume = Itunes::Volume
 
-# decrease and increase the volume
+# Decrease and increase the volume
 volume.down(20)
 volume.down      # default 10
 volume.up(20)
 volume.up       # default 10
 
-# mute and unmute the volume
+# Mute and unmute the volume
 volume.mute
 volume.unmute
 
-# return volume value
+# Return volume value
 volume.value
 ```
 
