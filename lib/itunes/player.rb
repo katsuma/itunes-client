@@ -3,6 +3,7 @@ require 'singleton'
 
 require 'itunes/track'
 require 'itunes/util'
+require 'itunes/volume'
 
 module Itunes
   class Player

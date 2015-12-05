@@ -57,6 +57,22 @@ track.play
 
 # Stop track
 track.stop
+
+# Control volume
+volume = Itunes::Volume.new
+
+# decrease and increase the volume
+volume.down(20)
+volume.down      # default 10
+volume.up(20)
+volume.up       # default 10
+
+# mute and unmute the volume
+volume.mute
+volume.unmute
+
+# return volume value
+volume.value
 ```
 
 ## License
