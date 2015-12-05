@@ -29,10 +29,10 @@ $ gem install itunes-client
 
 
 ## Supported Ruby
-- 2.2.0
-- 2.1.3
-- 2.0.0
-- 1.9.3
+- 2.2
+- 2.1
+- 2.0
+
 
 ## Usage
 
