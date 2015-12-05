@@ -1,11 +1,9 @@
-# coding: utf-8
 require 'spec_helper'
 require 'itunes-client'
 
 include Itunes
 
 describe Volume do
-  let(:volume) { Volume }
   let(:level) { an_instance_of(Fixnum) }
 
   describe '.up' do
@@ -37,10 +35,11 @@ describe Volume do
   end
 
   describe '.value' do
-    subject { volume.value }
     context 'when iTunes returns volume level' do
-      before { expect(Volume).to receive(:execute_script).with('volume/value.scpt').and_return("30") }
-      it { expect(subject).to be_a_kind_of(String) }
+      it 'returns current value' do
+        allow(Volume).to receive(:execute_script).with('volume/value.scpt').and_return("30")
+        expect(Volume.value).to eq(30)
+      end
     end
   end
 
