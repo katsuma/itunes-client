@@ -8,7 +8,7 @@ describe Player do
   describe '.add' do
     subject(:add) { Player.add(file_name) }
 
-    let(:file_name) { '/tmp/foo.wav' }
+    let(:file_name) { './foo.wav' }
     let(:new_persistent_id) { 'foo' }
 
     before do
@@ -16,10 +16,6 @@ describe Player do
     end
 
     context 'when existent file is given' do
-      before do
-        `echo "foo" > #{file_name}`
-      end
-
       before do
         expect(Player).to receive(:execute_script).
           with('player/add.scpt', file_name).and_return(new_persistent_id)
@@ -29,17 +25,15 @@ describe Player do
       end
 
       it 'returns an array of track instance', fakefs: true do
+        File.open(file_name, "w") { |f| f.puts 'sample' }
         expect(add).to be_a(Track)
         expect(add.persistent_id).to eq(new_persistent_id)
       end
     end
 
     context 'when zero byte file is given' do
-      before do
-        FileUtils.touch(file_name)
-      end
-
       it 'raises an EmptyFileError', fakefs: true do
+        File.open(file_name, "w") {}
         expect { add }.to raise_error(Itunes::Player::EmptyFileError)
       end
     end

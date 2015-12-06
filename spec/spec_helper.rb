@@ -14,7 +14,7 @@ RSpec.configure do |config|
   config.include FakeFS::SpecHelpers, fakefs: true
 end
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
 ]
