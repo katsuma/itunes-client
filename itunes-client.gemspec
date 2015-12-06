@@ -18,14 +18,14 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "rake", "~> 10.3.2"
-  spec.add_development_dependency "rspec", "~> 3.1.0"
-  spec.add_development_dependency "rb-fsevent", "~> 0.9.4"
-  spec.add_development_dependency "guard", "~> 2.6.1"
-  spec.add_development_dependency "guard-rspec", "~> 4.3.1"
+  spec.add_development_dependency "rake", "~> 10.4.2"
+  spec.add_development_dependency "rspec", "~> 3.4.0"
+  spec.add_development_dependency "rb-fsevent", "~> 0.9.6"
+  spec.add_development_dependency "guard", "~> 2.13.0"
+  spec.add_development_dependency "guard-rspec", "~> 4.6.4"
   spec.add_development_dependency "growl", "~> 1.0.3"
-  spec.add_development_dependency "fakefs", "~> 0.6.0"
-  spec.add_development_dependency "simplecov", "~> 0.9.0"
-  spec.add_development_dependency "coveralls", "~> 0.7.1"
-  spec.add_development_dependency "pry", "~> 0.10.1"
+  spec.add_development_dependency "fakefs", "~> 0.6.7"
+  spec.add_development_dependency "simplecov", "~> 0.11.1"
+  spec.add_development_dependency "coveralls", "~> 0.8.9"
+  spec.add_development_dependency "pry", "~> 0.10.3"
 end
