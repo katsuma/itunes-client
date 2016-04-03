@@ -124,11 +124,7 @@ module Itunes
       records = []
       args.each do |key, val|
         if ATTRIBUTES.include?(key)
-          if key == :video_kind
-            records << "set video kind of specified_track to #{val}"
-          else
-            records << "set #{key.to_s.gsub('_', ' ')} of specified_track to \"#{val}\""
-          end
+          records << "set #{key.to_s.gsub('_', ' ')} of specified_track to \"#{val}\""
         end
       end
       records.join("\n")

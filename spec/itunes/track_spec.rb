@@ -101,11 +101,12 @@ describe Track do
       let(:new_scpt)   { 'new.scpt' }
       let(:new_name)   { 'new name' }
       let(:new_album)  { 'new album' }
-      let(:attributes) { { name: new_name, album: new_album } }
+      let(:video_kind)  { 'video kind' }
+      let(:attributes) { { name: new_name, album: new_album, video_kind: video_kind } }
 
       before do
         allow(track).to receive(:generate_script_from_template).
-          with('track/updater.tmpl.scpt', persistent_id: track.persistent_id, update_records: "set name of specified_track to \"#{new_name}\"\nset album of specified_track to \"#{new_album}\"").
+          with('track/updater.tmpl.scpt', persistent_id: track.persistent_id, update_records: "set name of specified_track to \"#{new_name}\"\nset album of specified_track to \"#{new_album}\"\nset video kind of specified_track to \"#{video_kind}\"").
           and_return(new_scpt)
         allow(track).to receive(:execute_template_based_script).
           with(new_scpt)
